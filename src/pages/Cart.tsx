@@ -8,7 +8,7 @@ import Link from 'next/link'
 import CartPayment from '@/components/CartPayment'
 
 const Cart = () => {
-  const { prodData, searchedKeyword } = useSelector((state: StateProps) => state.theSliceName)
+  const { prodData, searchedKeyword, userInfo } = useSelector((state: StateProps) => state.theSliceName)
   // console.log(prodData);
   return (
     <div className='max-w-screen-2xl mx-auto gap-5 px-5 grid grid-cols-5  py-4'>
@@ -22,7 +22,7 @@ const Cart = () => {
             <div className='pt-2 flex flex-col gap-2'>
 
               {prodData.map((d: StoreProdProp) => {
-                if (d.title.toLowerCase().includes(searchedKeyword)) {
+                if (d.title.toLowerCase().includes(searchedKeyword) && d.userid == userInfo.email) {
                   return < div key={d.id} className=' flex flex-col gap-2' >
                     <CartProd cartProd={d} itis='cartItIs' />
                   </div>

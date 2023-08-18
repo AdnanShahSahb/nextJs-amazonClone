@@ -9,6 +9,7 @@ export interface ProdProp {
 }
 
 export interface StoreProdProp {
+    userid: string,
     id: number,
     title: string,
     quantity: number
