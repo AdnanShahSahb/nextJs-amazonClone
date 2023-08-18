@@ -1,32 +1,41 @@
-import React from 'react'
+import React, { ChangeEvent } from 'react'
 import { AiOutlineMenu } from "react-icons/ai"
 import { useDispatch, useSelector } from 'react-redux'
 import { StateProps } from '../../types'
 import { signOut } from 'next-auth/react'
-import { removeUser } from '@/store/slicing'
+import { removeUser, setKeywordsForSearching } from '@/store/slicing'
 
 const BottomNavbar = () => {
     const dispatching = useDispatch()
     const { userInfo } = useSelector((state: StateProps) => state.theSliceName)
+
+    const handleBottomNavbarClicks = (e: React.MouseEvent<HTMLParagraphElement, MouseEvent>) => {
+        const paragraphElement = e.target as HTMLParagraphElement;
+        const innerHTML = paragraphElement.innerHTML;
+
+        if (innerHTML.includes('<path ') || '')
+            dispatching(setKeywordsForSearching(''))
+        else
+            dispatching(setKeywordsForSearching(innerHTML))
+    }
+
+
     return (
         <div className='w-full bg-amazon_light text-white text-sm px-4 flex items-center h-10'>
-            <p className='flex items-center h-8 gap-1 border border-transparent hover:border-white cursor-pointer duration-300 px-2'>
+            <p onClick={(e) => handleBottomNavbarClicks(e)} className='flex items-center h-8 gap-1 border border-transparent hover:border-white cursor-pointer duration-300 px-2'>
                 <AiOutlineMenu /> All
             </p>
-            <p className='hidden md:inline-flex  items-center h-8 gap-1 border border-transparent hover:border-white cursor-pointer duration-300 px-2'>
-                Todays Deals
+            <p onClick={(e) => handleBottomNavbarClicks(e)} className='hidden md:inline-flex  items-center h-8 gap-1 border border-transparent hover:border-white cursor-pointer duration-300 px-2'>
+                men's clothing
             </p>
-            <p className='hidden md:inline-flex  items-center h-8 gap-1 border border-transparent hover:border-white cursor-pointer duration-300 px-2'>
-                Customer Service
+            <p onClick={(e) => handleBottomNavbarClicks(e)} className='hidden md:inline-flex  items-center h-8 gap-1 border border-transparent hover:border-white cursor-pointer duration-300 px-2'>
+                jewelery
             </p>
-            <p className='hidden md:inline-flex  items-center h-8 gap-1 border border-transparent hover:border-white cursor-pointer duration-300 px-2'>
-                Restry
+            <p onClick={(e) => handleBottomNavbarClicks(e)} className='hidden md:inline-flex  items-center h-8 gap-1 border border-transparent hover:border-white cursor-pointer duration-300 px-2'>
+                electronics
             </p>
-            <p className='hidden md:inline-flex  items-center h-8 gap-1 border border-transparent hover:border-white cursor-pointer duration-300 px-2'>
-                Gift Cards
-            </p>
-            <p className='hidden md:inline-flex  items-center h-8 gap-1 border border-transparent hover:border-white cursor-pointer duration-300 px-2'>
-                Sell
+            <p onClick={(e) => handleBottomNavbarClicks(e)} className='hidden md:inline-flex  items-center h-8 gap-1 border border-transparent hover:border-white cursor-pointer duration-300 px-2'>
+                women's clothing
             </p>
             {userInfo
                 &&

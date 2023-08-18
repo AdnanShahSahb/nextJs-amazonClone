@@ -35,7 +35,7 @@ const CartPayment = () => {
             },
             body: JSON.stringify({ items: prodData, email: session?.user?.email })
         })
-        console.log('REACHED');
+        // console.log('REACHED');
         const checkoutSession=await response.json()
 
         const result:any=await stripe?.redirectToCheckout({

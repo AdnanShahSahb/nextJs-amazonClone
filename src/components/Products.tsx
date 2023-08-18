@@ -9,13 +9,15 @@ import { addToCart, addToFavs } from '@/store/slicing'
 const Products = ({ prods }: any) => {
   // console.log(prods);
   const { searchedKeyword, userInfo } = useSelector((state: StateProps) => state.theSliceName)
-  console.log(prods, searchedKeyword);
+  // console.log(prods, searchedKeyword);
   const dispatching = useDispatch()
 
   return (
     <div className='w-full grid grid-cols-1 md:grid-cols-2 xl:grid-cols-4 px-6 gap-6 pb-10'>
       {prods.map(({ category, description, id, image, price, rating, title }: ProdProp) => {
-        if (title.toLowerCase().includes(searchedKeyword)) {
+        // console.log(category);
+        // console.log(typeof(searchedKeyword));
+        if (title.toLowerCase().includes(searchedKeyword) || category.includes(searchedKeyword) || searchedKeyword == 'All') {
           return (
             <div className='w-full  bg-white text-black p-4 border border-gray-300 rounded-lg group  overflow-hidden cursor-pointer' key={id}>
               <div className='w-full h-[260px] relative'>
@@ -24,7 +26,7 @@ const Products = ({ prods }: any) => {
                 <div className='w-12 h-24 absolute bottom-10 right-0 border-[1px]  border-gray-400 bg-white rounded-lg flex flex-col translate-x-20 group-hover:translate-x-0 duration-300 transition-transform'>
                   <span onClick={() => {
                     dispatching(addToCart({
-                      userid: userInfo.email ? userInfo.email : '',
+                      userid: userInfo.email,
                       description,
                       id,
                       image,
@@ -36,7 +38,7 @@ const Products = ({ prods }: any) => {
                   }} className='h-full w-full border-b-[1px] flex items-center justify-center text-xl bg-transparent hover:bg-amazon_yellow cursor-pointer duration-300'><BsCartPlus /></span>
                   <span onClick={() => {
                     dispatching(addToFavs({
-                      userid: userInfo.email ? userInfo.email : '',
+                      userid: userInfo.email,
                       description,
                       id,
                       image,
@@ -59,6 +61,7 @@ const Products = ({ prods }: any) => {
                 <p className='text-xs sm:h-[70px] text-gray-600 text-justify'>{description.substring(0, 120)}</p>
                 <button onClick={() => {
                   dispatching(addToCart({
+                    userid: userInfo ? userInfo.email : '',
                     description,
                     id,
                     image,

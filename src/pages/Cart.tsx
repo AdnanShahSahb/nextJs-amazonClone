@@ -10,11 +10,12 @@ import CartPayment from '@/components/CartPayment'
 const Cart = () => {
   const { prodData, searchedKeyword, userInfo } = useSelector((state: StateProps) => state.theSliceName)
   // console.log(prodData);
+  // console.log(userInfo);
   return (
     <div className='max-w-screen-2xl mx-auto gap-5 px-5 grid grid-cols-5  py-4'>
       {prodData.length > 0 ?
         <>
-          <div className='bg-white col-span-4 p-4 rounded-lg'>
+          <div className='bg-white col-span-5 sm:col-span-4 p-4 rounded-lg'>
             <div className='flex items-center justify-between border-b-[1px] border-b-gray pb-1'>
               <p className=' text-2xl font-semibold text-amazon_blue'>Shopping Cart</p>
               <p className='text-lg font-semibold text-amazon_blue'>Subtitle</p>
@@ -22,7 +23,17 @@ const Cart = () => {
             <div className='pt-2 flex flex-col gap-2'>
 
               {prodData.map((d: StoreProdProp) => {
-                if (d.title.toLowerCase().includes(searchedKeyword) && d.userid == userInfo.email) {
+                if (d.title.toLowerCase().includes(searchedKeyword) && userInfo && d.userid == userInfo.email) {
+                  // console.log('1');
+                  return < div key={d.id} className=' flex flex-col gap-2' >
+                    <CartProd cartProd={d} itis='cartItIs' />
+                  </div>
+                }
+                else if (d.title.toLowerCase().includes(searchedKeyword) && userInfo && d.userid != userInfo.email) {
+
+                }
+                else if (d.title.toLowerCase().includes(searchedKeyword)) {
+                  // console.log('2');
                   return < div key={d.id} className=' flex flex-col gap-2' >
                     <CartProd cartProd={d} itis='cartItIs' />
                   </div>
@@ -32,7 +43,7 @@ const Cart = () => {
               <ResetCart />
             </div>
           </div>
-          <div className='bg-white h-64 col-span-1 p-4 rounded-lg flex items-center justify-center'>
+          <div className='bg-white h-64 col-span-5 sm:col-span-1 p-4 rounded-lg flex items-center justify-center'>
             <CartPayment />
           </div>
         </>

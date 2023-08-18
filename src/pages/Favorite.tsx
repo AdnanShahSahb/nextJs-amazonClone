@@ -23,7 +23,7 @@ const Favorite = () => {
                         <div className='pt-2 flex flex-col gap-2'>
 
                             {favData.map((d: StoreProdProp) => {
-                                if (d.title.toLowerCase().includes(searchedKeyword) && d.userid == userInfo.email) {
+                                if (d.title.toLowerCase().includes(searchedKeyword) ) {
 
                                     return < div key={d.id} className=' flex flex-col gap-2' >
                                         <CartProd cartProd={d} itis={'favItIs'} />
