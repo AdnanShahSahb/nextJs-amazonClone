@@ -9,7 +9,6 @@ export interface ProdProp {
 }
 
 export interface StoreProdProp {
-    userid: string,
     id: number,
     title: string,
     quantity: number
@@ -23,6 +22,5 @@ export interface StoreProdProp {
 export interface StateProps {
     prodData: [],
     favData: [],
-    userInfo: null | string,
     theSliceName: any
 }

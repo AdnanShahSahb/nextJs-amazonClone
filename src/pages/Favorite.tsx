@@ -10,7 +10,7 @@ import Link from 'next/link';
 const Favorite = () => {
 
 
-    const { favData, searchedKeyword, userInfo } = useSelector((state: StateProps) => state.theSliceName)
+    const { favData, searchedKeyword } = useSelector((state: StateProps) => state.theSliceName)
     return (
         <div className='max-w-screen-2xl mx-auto gap-5 px-5 grid grid-cols-5  py-4'>
             {favData.length > 0 ?

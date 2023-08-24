@@ -56,17 +56,6 @@ const Navbar = () => {
   const [lengthOfUserCart, setLengthOfUserCart] = useState(0)
 
   // useEffect(() => { dispatching(resetCart()) },[])
-  useEffect(() => {
-
-    if (userInfo)
-      setLengthOfUserCart(prodData.filter((d: StoreProdProp) => {
-        if (d.userid == userInfo.email)
-          return d
-
-    }).length)
-
-
-  }, [prodData, session, favData])
 
   // const handleUserCart = () => {
   //   console.log(session?.user?.email);
@@ -124,7 +113,7 @@ const Navbar = () => {
           {/* <HoverDiving> */}
           <Image src={cartImg} alt='cartImg' className='w-auto object-cover h-8' />
           <p className='text-xs text-white font-bold mt-3 hidden sm:block'>Cart </p>
-          <span className='absolute text-amazon_yellow text-sm top-2 left-[31px] font-semibold'>{userInfo ? lengthOfUserCart : prodData.length}</span>
+          <span className='absolute text-amazon_yellow text-sm top-2 left-[31px] font-semibold'>{ prodData.length}</span>
           {/* </HoverDiving> */}
         </Link>
 

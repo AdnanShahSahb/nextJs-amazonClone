@@ -8,9 +8,9 @@ import Link from 'next/link'
 import CartPayment from '@/components/CartPayment'
 
 const Cart = () => {
-  const { prodData, searchedKeyword, userInfo } = useSelector((state: StateProps) => state.theSliceName)
+  const { prodData, searchedKeyword } = useSelector((state: StateProps) => state.theSliceName)
   // console.log(prodData);
-  // console.log(userInfo && userInfo.email);
+  // console.lo &.email);
   return (
     <div className='max-w-screen-2xl mx-auto gap-5 px-5 grid grid-cols-5  py-4'>
       {prodData.length > 0 ?
@@ -23,16 +23,7 @@ const Cart = () => {
             <div className='pt-2 flex flex-col gap-2'>
 
               {prodData.map((d: StoreProdProp) => {
-                if (d.title.toLowerCase().includes(searchedKeyword) && userInfo && d.userid == userInfo.email) {
-                  // console.log('1');
-                  return < div key={d.id} className=' flex flex-col gap-2' >
-                    <CartProd cartProd={d} itis='cartItIs' />
-                  </div>
-                }
-                else if (d.title.toLowerCase().includes(searchedKeyword) && userInfo && d.userid != userInfo.email) {
-
-                }
-                else if (d.title.toLowerCase().includes(searchedKeyword)) {
+                if (d.title.toLowerCase().includes(searchedKeyword)) {
                   // console.log('2');
                   return < div key={d.id} className=' flex flex-col gap-2' >
                     <CartProd cartProd={d} itis='cartItIs' />
