@@ -26,7 +26,7 @@ const BottomNavbar = () => {
                 <AiOutlineMenu /> All
             </p>
             <p onClick={(e) => handleBottomNavbarClicks(e)} className='hidden md:inline-flex  items-center h-8 gap-1 border border-transparent hover:border-white cursor-pointer duration-300 px-2'>
-                men's clothing
+                men&apos;s clothing
             </p>
             <p onClick={(e) => handleBottomNavbarClicks(e)} className='hidden md:inline-flex  items-center h-8 gap-1 border border-transparent hover:border-white cursor-pointer duration-300 px-2'>
                 jewelery
@@ -35,7 +35,7 @@ const BottomNavbar = () => {
                 electronics
             </p>
             <p onClick={(e) => handleBottomNavbarClicks(e)} className='hidden md:inline-flex  items-center h-8 gap-1 border border-transparent hover:border-white cursor-pointer duration-300 px-2'>
-                women's clothing
+                women&apos;s clothing
             </p>
             {userInfo
                 &&
